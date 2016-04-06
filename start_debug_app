@@ -1,0 +1,12 @@
+# set up connection to machine
+eval "$(docker-machine env default)"
+
+# build the container
+docker build -t forumapp .
+if [ $? -eq 0 ]; then
+
+    # start the app
+    docker run --name web --rm -p 5000:5000 forumapp python app.py
+
+fi
+
